@@ -14,6 +14,11 @@
             color: #333;
         }
 
+        .main{
+            padding: 30px;
+        }
+       
+
         .container {
             max-width: 768px;
             margin: 0 auto;
@@ -61,6 +66,10 @@
             gap: 20px;
         }
 
+        .blog-card.special{
+            display: none;
+        }
+
         .blog-card {
             position: relative;
             width: 90%;
@@ -70,7 +79,7 @@
 
         .blog-card img {
             width: 100%;
-            height: 200px;
+            height: 12.5rem;
             border: 2px solid #ddd;
             object-fit: cover;
             display: block;
@@ -138,6 +147,10 @@
         }
 
         @media (max-width: 767px) {
+
+            .main{
+            padding:0px;
+        }
             .search-container {
                 display: block;
             }
@@ -209,6 +222,9 @@
         }
 
         @media (min-width: 768px) {
+            .main{
+            padding:0px;
+        }
             .blog-cards {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -225,23 +241,99 @@
             }
         }
         @media (min-width: 1024px) {
+            .container{
+                margin-left: 13.188rem;
+            }
+            .header{
+                margin-left: 13.188rem;
+            }
             .blog-cards {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 40px;
                 width: 800px;
             }
+            .blog-card.special{
+                display: flex;
+            }
             .blog-cards :first-child{
-                grid-row: span 2;
+                grid-row: span 3;
                 flex-grow: 0;
+            }
+            .blog-cards .blog-card:first-child {
+                flex-direction: column;
+                
+            }
+            .blog-cards .blog-card:first-child .content{
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                width: 100%;
+                padding: 15px;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 10px;
+            }
+            .blog-cards .blog-card:first-child .content .date-category{
+                order: 3;
+            }
+            .blog-cards .blog-card:first-child img{
+                width: 100%;
+                height: 100%;
+                align-items: center;
+                justify-content: center;
+            }
+            .blog-cards .blog-card:first-child .meta-info .author {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .blog-cards .blog-card:first-child .date-category {
+                margin-bottom: 8px;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 15px;
+            }
+
+            .blog-cards .blog-card:first-child .meta-info {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-top: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+            .blog-cards .blog-card:first-child .meta-info span {
+                display: flex;
+                align-items: center;
+                color: #666;
+                font-size: 0.8rem;
+            }
+
+            .blog-cards .blog-card:first-child .meta-info span i {
+                margin-right: 5px;
+            }
+
+            .blog-cards .blog-card:first-child .meta-info .author {
+                display: flex;
+                align-items: center;
+            }
+
+            .blog-cards .blog-card:first-child .meta-info .author i {
+                margin-right: 5px;
             }
             .blog-card {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                padding: 15px;
                 gap: 20px;
                 width: 30rem;
+                background: rgba(255, 255, 255, 0.95);
 
             }
+
             .blog-card .date-category{
                 display: flex;
                 flex-direction: row;
@@ -271,13 +363,17 @@
             }
             
         }
+
+        
     </style>
 </head>
 <body>
-
+    <div class="main">
     <div class="container">
-        <h1>Blog Title</h1>
-        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus nulla ut commodo sagittis.</p>
+        <div class="header">
+            <h1>Blog Title</h1>
+            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus nulla ut commodo sagittis.</p>
+        </div>
         <div class="search-container">
             <i class="fa-solid fa-search"></i>
             <input type="text" placeholder="Search...">
@@ -288,6 +384,21 @@
                 <div class="content">
                     <div class="date-category">
                         <span><i class="fa-solid fa-calendar"></i>15 Feb 2024</span>
+                        <div class="meta-info">
+                            <span><i class="fa-solid fa-tag"></i>Category</span>
+                            <span class="author"><i class="fa-solid fa-user"></i>Alex Jones</span>
+                        </div>
+                    </div>
+                    <h3>Heading</h3>
+                    <p>Lorem ipsum dolor sit amet nulla nec ut adipiscing elit.</p>
+                    <a href="#">Read more →</a>
+                </div>
+            </div>
+            <div class="blog-card special">
+                <img src="https://cdn.leonardo.ai/users/01b25219-ddfe-4106-8839-f7c429fe764e/generations/1436bbcd-6b82-44cf-b35f-84c8ab49d7c5/Leonardo_Phoenix_10_A_sleek_modern_thumbnail_image_that_exudes_2.jpg" alt="">
+                <div class="content">
+                    <div class="date-category">
+                        <span><i class="fa-solid fa-calendar"></i>5 Feb 2024</span>
                         <div class="meta-info">
                             <span><i class="fa-solid fa-tag"></i>Category</span>
                             <span class="author"><i class="fa-solid fa-user"></i>Alex Jones</span>
@@ -329,6 +440,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
