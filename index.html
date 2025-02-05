@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fc;
+            color: #333;
+        }
+
+        .container {
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p.description {
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .search-container {
+            display: none;
+            position: relative;
+            margin: 20px auto;
+            width: 70%;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .blog-cards {
+            display: grid;
+            gap: 20px;
+        }
+
+        .blog-card {
+            position: relative;
+            width: 90%;
+            margin: auto;
+            text-align: center;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            border: 2px solid #ddd;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .blog-card .content {
+            position: relative;
+            top: -30px;
+            width: 75%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            margin: auto;
+        }
+
+        .blog-card .date-category {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            align-items: center;
+        }
+
+        .blog-card .date-category span {
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-card .date-category span i {
+            margin-right: 5px;
+        }
+
+        .blog-card .date-category .category {
+            background-color: #e2e2e2;
+            color: #666;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .blog-card h3 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .blog-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .blog-card a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .blog-card .meta-info .author {
+            display: none;
+        }
+
+        @media (max-width: 767px) {
+            .search-container {
+                display: block;
+            }
+
+            .blog-card {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                background: white;
+                border-radius: 8px;
+                padding: 15px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            
+            .blog-card img {
+                width: 40%;
+                height: 150px;
+                margin: 0;
+                border-radius: 8px;
+            }
+            
+            .blog-card .content {
+                position: static;
+                width: 60%;
+                margin: 0 0 0 15px;
+                padding: 0;
+                box-shadow: none;
+                background: none;
+                text-align: left;
+            }
+            
+            .blog-card .date-category {
+                margin-bottom: 8px;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 15px;
+            }
+
+            .blog-card .meta-info {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-top: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+            .blog-card .meta-info span {
+                display: flex;
+                align-items: center;
+                color: #666;
+                font-size: 0.8rem;
+            }
+
+            .blog-card .meta-info span i {
+                margin-right: 5px;
+            }
+
+            .blog-card .meta-info .author {
+                display: flex;
+                align-items: center;
+            }
+
+            .blog-card .meta-info .author i {
+                margin-right: 5px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .blog-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .blog-card .meta-info span i.fa-tag {
+                display: none;
+            }
+
+            .blog-card .meta-info span:has(i.fa-tag) {
+                background-color: #f0f0f0;
+                padding: 4px 12px;
+                border-radius: 15px;
+                font-size: 0.8rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .blog-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+                width: 800px;
+            }
+            .blog-cards :first-child{
+                grid-row: span 2;
+                flex-grow: 0;
+            }
+            .blog-card {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                width: 30rem;
+
+            }
+            .blog-card .date-category{
+                display: flex;
+                flex-direction: row;
+
+            }
+           
+            .blog-card .content {
+            position: relative;
+            top: -30px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 0;
+            position: relative;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                background: none;
+                text-align: left;
+        }
+            .blog-card img{
+                width: 50%;
+                height: 100%;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Blog Title</h1>
+        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus nulla ut commodo sagittis.</p>
+        <div class="search-container">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="blog-cards">
+            <div class="blog-card">
+                <img src="https://cdn.leonardo.ai/users/01b25219-ddfe-4106-8839-f7c429fe764e/generations/1436bbcd-6b82-44cf-b35f-84c8ab49d7c5/Leonardo_Phoenix_10_A_sleek_modern_thumbnail_image_that_exudes_2.jpg" alt="">
+                <div class="content">
+                    <div class="date-category">
+                        <span><i class="fa-solid fa-calendar"></i>15 Feb 2024</span>
+                        <div class="meta-info">
+                            <span><i class="fa-solid fa-tag"></i>Category</span>
+                            <span class="author"><i class="fa-solid fa-user"></i>Alex Jones</span>
+                        </div>
+                    </div>
+                    <h3>Heading</h3>
+                    <p>Lorem ipsum dolor sit amet nulla nec ut adipiscing elit.</p>
+                    <a href="#">Read more →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://cdn.leonardo.ai/users/01b25219-ddfe-4106-8839-f7c429fe764e/generations/1436bbcd-6b82-44cf-b35f-84c8ab49d7c5/Leonardo_Phoenix_10_A_sleek_modern_thumbnail_image_that_exudes_2.jpg" alt="">
+                <div class="content">
+                    <div class="date-category">
+                        <span><i class="fa-solid fa-calendar"></i>5 Feb 2024</span>
+                        <div class="meta-info">
+                            <span><i class="fa-solid fa-tag"></i>Category</span>
+                            <span class="author"><i class="fa-solid fa-user"></i>Alex Jones</span>
+                        </div>
+                    </div>
+                    <h3>Heading</h3>
+                    <p>Lorem ipsum dolor sit amet nulla nec ut adipiscing elit.</p>
+                    <a href="#">Read more →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://cdn.leonardo.ai/users/01b25219-ddfe-4106-8839-f7c429fe764e/generations/1436bbcd-6b82-44cf-b35f-84c8ab49d7c5/Leonardo_Phoenix_10_A_sleek_modern_thumbnail_image_that_exudes_2.jpg" alt="">
+                <div class="content">
+                    <div class="date-category">
+                        <span><i class="fa-solid fa-calendar"></i>8 Jan 2024</span>
+                        <div class="meta-info">
+                            <span><i class="fa-solid fa-tag"></i>Category</span>
+                            <span class="author"><i class="fa-solid fa-user"></i>Alex Jones</span>
+                        </div>
+                    </div>
+                    <h3>Heading</h3>
+                    <p>Lorem ipsum dolor sit amet nulla nec ut adipiscing elit.</p>
+                    <a href="#">Read more →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
